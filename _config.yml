@@ -1,3 +1,4 @@
-title: "My GitHub Pages Site"
-description: "A simple GitHub Pages site using Jekyll"
-theme: jekyll-theme-cayman
+title: "Simple Equations"
+description: "A site using GitHub Pages and Jekyll theme"
+theme: jekyll-theme-cayman  # replace with your chosen theme
+
