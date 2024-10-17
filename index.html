@@ -1,91 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Number Generator and new Chart</title>
-  <!-- Link to Chart.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-  <h1>Number Generator and New Chart</h1>
-  <p>Enter a number, click the button, and see the result:</p>
-  
-  <label for="inputNumber">Input Number:</label>
-  <input type="text" id="inputNumber" placeholder="Enter a number">
-  
-  <button onclick="generateNumbers()">Generate</button>
-  
-  <p>Text Answer: <span id="textAnswer"></span></p>
+---
+layout: default
+title: Home
+---
 
-  <h2>Generated Numbers:</h2>
-  <ul id="numberList"></ul>
-  
-  <h2>Bar Chart:</h2>
-  <canvas id="myChart" style="max-width: 300px; max-height: 150px;"></canvas>
+# Number Generator and New Chart
 
-  <script>
-    // Global variable to hold the chart instance
-    let chart;
+<p>Enter a number, click the button, and see the result:</p>
 
-    function generateNumbers() {
-      // Get the user input
-      let input = document.getElementById("inputNumber").value;
-      let number = parseFloat(input);
+<label for="inputNumber">Input Number:</label>
+<input type="text" id="inputNumber" placeholder="Enter a number">
 
-      // Check if input is a valid number
-      if (isNaN(number)) {
-        document.getElementById("textAnswer").innerText = "Please enter a valid number.";
-        return;
-      }
+<button onclick="generateNumbers()">Generate</button>
 
-      // Generate 5 numbers based on the input
-      let numbers = [];
-      for (let i = 1; i <= 5; i++) {
-        numbers.push(number * i); // Example: multiples of the input number
-      }
+<p>Text Answer: <span id="textAnswer"></span></p>
 
-      // Display a text answer
-      document.getElementById("textAnswer").innerText = `The generated numbers are multiples of ${number}.`;
+## Generated Numbers:
+<ul id="numberList"></ul>
 
-      // Display the numbers in a list
-      let numberList = document.getElementById("numberList");
-      numberList.innerHTML = ''; // Clear the list
-      numbers.forEach(num => {
-        let listItem = document.createElement("li");
-        listItem.innerText = num;
-        numberList.appendChild(listItem);
-      });
+## Bar Chart:
+<canvas id="myChart" style="max-width: 300px; max-height: 150px;"></canvas>
 
-      // Destroy the existing chart if it exists to avoid reinitialisation issues
-      if (chart) {
-        chart.destroy();
-      }
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-      // Create the bar chart with the generated numbers
-      let ctx = document.getElementById("myChart").getContext("2d");
-      chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['1x', '2x', '3x', '4x', '5x'], // Labels for each bar
-          datasets: [{
-            label: 'Generated Numbers',
-            data: numbers, // Generated numbers as data points
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+<script>
+  // Global variable to hold the chart instance
+  let chart;
+
+  function generateNumbers() {
+    // Get the user input
+    let input = document.getElementById("inputNumber").value;
+    let number = parseFloat(input);
+
+    // Check if input is a valid number
+    if (isNaN(number)) {
+      document.getElementById("textAnswer").innerText = "Please enter a valid number.";
+      return;
+    }
+
+    // Generate 5 numbers based on the input
+    let numbers = [];
+    for (let i = 1; i <= 5; i++) {
+      numbers.push(number * i); // Example: multiples of the input number
+    }
+
+    // Display a text answer
+    document.getElementById("textAnswer").innerText = `The generated numbers are multiples of ${number}.`;
+
+    // Display the numbers in a list
+    let numberList = document.getElementById("numberList");
+    numberList.innerHTML = ''; // Clear the list
+    numbers.forEach(num => {
+      let listItem = document.createElement("li");
+      listItem.innerText = num;
+      numberList.appendChild(listItem);
+    });
+
+    // Destroy the existing chart if it exists to avoid reinitialisation issues
+    if (chart) {
+      chart.destroy();
+    }
+
+    // Create the bar chart with the generated numbers
+    let ctx = document.getElementById("myChart").getContext("2d");
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['1x', '2x', '3x', '4x', '5x'], // Labels for each bar
+        datasets: [{
+          label: 'Generated Numbers',
+          data: numbers, // Generated numbers as data points
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
-      });
-    }
-  </script>
-</body>
-</html>
-
+      }
+    });
+  }
+</script>
